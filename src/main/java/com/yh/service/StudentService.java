@@ -1,10 +1,9 @@
 package com.yh.service;
 
+import com.github.pagehelper.PageInfo;
 import com.yh.pojo.Student;
-
-import java.util.List;
 
 public interface StudentService {
 
-    List<Student> findAll();
+    PageInfo<Student> findByPage(Integer pageIndex, Integer pageNum);
 }

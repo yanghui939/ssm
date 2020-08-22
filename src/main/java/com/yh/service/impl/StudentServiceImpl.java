@@ -1,5 +1,7 @@
 package com.yh.service.impl;
 
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
 import com.yh.dao.StudentDao;
 import com.yh.pojo.Student;
 import com.yh.service.StudentService;
@@ -14,9 +16,11 @@ public class StudentServiceImpl implements StudentService {
     private StudentDao studentDao;
 
     @Override
-    public List<Student> findAll() {
+    public PageInfo<Student> findByPage(Integer pageIndex,Integer pageSize) {
         System.out.println("StudentService运行了");
+        PageHelper.startPage(pageIndex,pageSize);
         List<Student> studentList = studentDao.findAll();
-        return studentList;
+        PageInfo<Student> pageInfo = new PageInfo<>(studentList);
+        return pageInfo;
     }
 }
